@@ -1,0 +1,10 @@
+# Envia para o index.php tudo o que não for um arquivo real
+Options -Indexes
+
+RewriteEngine On
+
+# pastas que não devem ser servidas
+RewriteRule ^(\.git|database|tests)(/|$) - [F,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
